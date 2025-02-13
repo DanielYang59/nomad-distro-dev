@@ -50,6 +50,12 @@ docker = "docker compose up -d"
 start = "nomad admin run appworker"
 setup = ["gui-env", "gui-setup", "docker", "config"]
 lint = ["ruff-lint", "ruff-format"]
+worker = "nomad admin run worker"
+
+[tool.poe.tasks.api_reload]
+cmd = "uvicorn nomad.app.main:app --reload"
+cwd = "/Users/yang/developer/nomad-distro-dev/packages/nomad-FAIR"
+env = { NOMAD_CONFIG = "/Users/yang/developer/nomad-distro-dev/nomad.yaml" }
 
 [tool.poe.tasks.config]
 shell = """
