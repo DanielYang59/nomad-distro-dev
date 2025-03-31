@@ -10,15 +10,15 @@ dependencies = [
   "perovskite-solar-cell-database",
   'nomad-porous-materials; sys_platform != "win32"',
   "nomad-aitoolkit",
-  "nomad-simulations>=0.3.1",
-  "pynxtools[apm,ellips,mpes,raman,stm,xps,xrd]==0.9.1",
+  "nomad-simulations>=0.3.2",
+  "pynxtools[apm,ellips,mpes,raman,stm,xps,xrd]==0.10.0",
   "nomad-schema-plugin-run>=1.0.1",
   "nomad-normalizer-plugin-dos>=1.0",
   "nomad-normalizer-plugin-soap>=1.0",
   "nomad-normalizer-plugin-spectra>=1.0",
   "nomad-normalizer-plugin-system>=1.0",
   "nomad-parser-plugins-electronic>=1.0",
-  "nomad-parser-plugins-atomistic>=1.0",
+  "nomad-parser-plugins-atomistic>=1.0.6",
   "nomad-parser-plugins-database>=1.0",
   "nomad-external-eln-integrations",
 ]
@@ -50,12 +50,6 @@ docker = "docker compose up -d"
 start = "nomad admin run appworker"
 setup = ["gui-env", "gui-setup", "docker", "config"]
 lint = ["ruff-lint", "ruff-format"]
-worker = "nomad admin run worker"
-
-[tool.poe.tasks.api_reload]
-cmd = "uvicorn nomad.app.main:app --reload"
-cwd = "/Users/yang/developer/nomad-distro-dev/packages/nomad-FAIR"
-env = { NOMAD_CONFIG = "/Users/yang/developer/nomad-distro-dev/nomad.yaml" }
 
 [tool.poe.tasks.config]
 shell = """
