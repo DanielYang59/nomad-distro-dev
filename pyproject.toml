@@ -50,6 +50,8 @@ docker = "docker compose up -d"
 start = "nomad admin run appworker"
 setup = ["gui-env", "gui-setup", "docker", "config"]
 lint = ["ruff-lint", "ruff-format"]
+worker = "nomad admin run worker"
+api_reload = "uvicorn nomad.app.main:app --reload"
 
 [tool.poe.tasks.config]
 shell = """
