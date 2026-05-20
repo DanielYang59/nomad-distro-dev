@@ -62,6 +62,18 @@ services:
       - 7233:7233
       - 8080:8233
 
+  # local keycloak used by GUI/auth e2e flows
+  keycloak:
+    image: gitlab-registry.mpcdf.mpg.de/nomad-lab/nomad-test-keycloak:v1.1
+    platform: linux/amd64
+    container_name: nomad_keycloak
+    environment:
+      - KC_HTTP_PORT=8008
+      - KC_HOSTNAME=http://localhost:8008
+    ports:
+      - 8008:8008
+      - 9000:9000
+
 volumes:
   nomad_mongo:
   nomad_mongo_config:
