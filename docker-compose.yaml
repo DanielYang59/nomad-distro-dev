@@ -21,7 +21,7 @@ services:
   # the search engine
   elastic:
     restart: "no"
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.27
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.5.0
     container_name: nomad_elastic
     environment:
       - ES_JAVA_OPTS=-Xms512m -Xmx1g
@@ -34,12 +34,12 @@ services:
     ports:
       - 9200:9200
     volumes:
-      - nomad_elastic:/usr/share/elasticsearch/data
+      - nomad_elastic_9:/usr/share/elasticsearch/data
 
   # the user data db
   mongo:
     restart: "no"
-    image: mongo:5.0.6
+    image: mongo:8.0
     container_name: nomad_mongo
     environment:
       - MONGO_DATA_DIR=/data/db
@@ -65,5 +65,5 @@ services:
 volumes:
   nomad_mongo:
   nomad_mongo_config:
-  nomad_elastic:
+  nomad_elastic_9:
   nomad_temporal:
